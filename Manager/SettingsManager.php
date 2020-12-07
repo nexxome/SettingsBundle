@@ -14,7 +14,7 @@ use Dmishh\SettingsBundle\Entity\SettingsOwnerInterface;
 use Dmishh\SettingsBundle\Exception\UnknownSettingException;
 use Dmishh\SettingsBundle\Exception\WrongScopeException;
 use Dmishh\SettingsBundle\Serializer\SerializerInterface;
-use Doctrine\Common\Persistence\ObjectManager;
+use Doctrine\ORM\EntityManagerInterface;
 
 /**
  * Settings Manager provides settings management and persistence using Doctrine's Object Manager.
@@ -35,7 +35,7 @@ class SettingsManager implements SettingsManagerInterface
     private $ownerSettings;
 
     /**
-     * @var \Doctrine\Common\Persistence\ObjectManager
+     * @var EntityManagerInterface
      */
     private $em;
 
@@ -55,12 +55,12 @@ class SettingsManager implements SettingsManagerInterface
     private $settingsConfiguration;
 
     /**
-     * @param ObjectManager $em
+     * @param EntityManagerInterface $em
      * @param SerializerInterface $serializer
      * @param array $settingsConfiguration
      */
     public function __construct(
-        ObjectManager $em,
+        EntityManagerInterface $em,
         SerializerInterface $serializer,
         array $settingsConfiguration = array()
     ) {
